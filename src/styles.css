@@ -37,8 +37,6 @@
   --fb-bg: rgba(255,204,102,0.06);
   --fb-border: rgba(255,204,102,0.2);
   --fb-hover: rgba(255,204,102,0.1);
-  --fb-sel-bg: rgba(255,204,102,0.12);
-  --fb-sel-border: rgba(255,204,102,0.3);
   --scrollbar: rgba(92,107,127,0.2);
 }
 
@@ -78,8 +76,6 @@
   --fb-bg: rgba(180,83,9,0.04);
   --fb-border: rgba(180,83,9,0.15);
   --fb-hover: rgba(180,83,9,0.08);
-  --fb-sel-bg: rgba(180,83,9,0.1);
-  --fb-sel-border: rgba(180,83,9,0.25);
   --scrollbar: rgba(0,0,0,0.1);
 }
 
@@ -243,9 +239,9 @@
 }
 .fb:hover { background: var(--fb-hover); }
 .fb.sel {
-  background: var(--fb-sel-bg);
-  border-color: var(--fb-sel-border);
-  border-left-color: var(--fb-accent);
+  background: var(--accent-bg-sel);
+  border-color: var(--accent-border-sel);
+  border-left: 3px solid var(--accent);
 }
 .fb-num {
   font-size: 26px; font-weight: 800; letter-spacing: -0.02em;
