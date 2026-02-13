@@ -111,7 +111,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p02.2",
-        text: " handling, solid DOM reconciliation, and a real selection model \u2014 the kind of deep browser plumbing that takes years to get right. Slate handled the hard, unglamorous work of making text editing actually work across browsers, and PTE built Portable Text semantics on top of it.",
+        text: " handling, solid DOM reconciliation, and a real selection model. That\u2019s deep browser plumbing that takes years to get right. Slate handled the hard, unglamorous work of making text editing actually work across browsers, and PTE built Portable Text semantics on top of it.",
         marks: [],
       },
     ],
@@ -132,14 +132,14 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p03.2",
-        text: " Slate \u2014 we\u2019ve been building ",
+        text: " Slate. We\u2019ve been building ",
         marks: [],
       },
       { _type: "span", _key: "p03.3", text: "around", marks: ["em"] },
       {
         _type: "span",
         _key: "p03.4",
-        text: " it. And the gap between what Slate provides and what PTE needs has grown wide enough that we\u2019re now maintaining two systems where we should have one.",
+        text: " it. The gap between what Slate provides and what PTE needs has grown wide enough that we\u2019re now maintaining two systems where we should have one.",
         marks: [],
       },
     ],
@@ -153,7 +153,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p04.0",
-        text: "This isn\u2019t a story about Slate failing. It\u2019s a story about PTE succeeding \u2014 to the point where ",
+        text: "This isn\u2019t a story about Slate failing. It\u2019s a story about PTE succeeding to the point where ",
         marks: [],
       },
       {
@@ -196,7 +196,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p05.1",
-        text: "PTE\u2019s translation layer \u2014 the code that bridges between Portable Text and Slate \u2014 is 493KB of TypeScript across 136 files. Slate itself is 513KB of source code.",
+        text: "PTE\u2019s integration layer, the code that bridges between Portable Text and Slate, is 493KB of TypeScript across 136 files. Slate itself is 513KB of source code.",
         marks: ["strong"],
       },
     ],
@@ -218,7 +218,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p06.0",
-        text: "We\u2019ve built a system nearly the size of the framework it sits on top of \u2014 493KB of integration code spanning behavior routing, dual-model sync, plugin bridge layers, and the translation overhead between them. Much of it reflects PTE\u2019s own sophistication \u2014 a richer event system, predictable typing, collaborative editing. But roughly 175KB exists purely because two data models need to stay in sync, and the rest is shaped and constrained by that boundary.",
+        text: "We\u2019ve built a system nearly the size of the framework it sits on top of. That 493KB spans behavior routing, dual-model sync, plugin bridge layers, and the translation overhead between them. A lot of it reflects PTE\u2019s own sophistication: a richer event system, predictable typing, collaborative editing. But roughly 175KB exists purely because two data models need to stay in sync, and the boundary shapes everything around it.",
         marks: [],
       },
     ],
@@ -260,7 +260,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p07.6",
-        text: " \u2014 Slate\u2019s tree in ",
+        text: ": Slate\u2019s tree in ",
         marks: [],
       },
       {
@@ -279,7 +279,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p07.10",
-        text: " \u2014 kept in sync on every keystroke, every paste, every collaborative edit. That dual-model sync alone accounts for ",
+        text: ", kept in sync on every keystroke, every paste, every collaborative edit. That dual-model sync alone accounts for ",
         marks: [],
       },
       {
@@ -320,7 +320,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p08.2",
-        text: ". That means 78% of the framework we ship is dead weight \u2014 code we carry but never call. We override 18 Slate methods. We run 8 plugins in a carefully ordered chain. We maintain 6 XState actors alongside Slate\u2019s own state. We\u2019ve replaced Slate\u2019s history system, its transform pipeline, its event handling, and most of its editor methods.",
+        text: ". The other 78% is dead weight we carry but never call. We override 18 Slate methods, run 8 plugins in a carefully ordered chain, and maintain 6 XState actors alongside Slate\u2019s own state. We\u2019ve replaced Slate\u2019s history system, its transform pipeline, its event handling, and most of its editor methods.",
         marks: [],
       },
     ],
@@ -342,7 +342,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p08b.0",
-        text: "The most telling example is the Behavior API \u2014 PTE\u2019s own event system. It\u2019s 150KB across 30 files. It intercepts 13 of Slate\u2019s editor methods \u2014 ",
+        text: "The most telling example is the Behavior API, PTE\u2019s own event system. 150KB across 30 files. It intercepts 13 of Slate\u2019s editor methods (",
         marks: [],
       },
       { _type: "span", _key: "p08b.1", text: "delete", marks: ["code"] },
@@ -364,7 +364,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p08b.12",
-        text: ", and more \u2014 and re-routes every user action through PTE\u2019s own XState machines. We didn\u2019t extend Slate\u2019s event handling. ",
+        text: ", and others) and re-routes every user action through PTE\u2019s own XState machines. We didn\u2019t extend Slate\u2019s event handling. ",
         marks: [],
       },
       {
@@ -392,19 +392,19 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p08c.2",
-        text: " object \u2014 it doesn\u2019t own it, and writing properties there might collide with consumer code. So it uses WeakMaps: slower than direct property access, and notoriously hard to debug because you can\u2019t inspect WeakMap contents in devtools. ",
+        text: " object. It doesn\u2019t own it, and writing properties there might collide with consumer code. So it uses WeakMaps, which are slower than direct property access and notoriously hard to debug (you can\u2019t inspect WeakMap contents in devtools). ",
         marks: [],
       },
       {
         _type: "span",
         _key: "p08c.3",
-        text: "That\u2019s a reasonable trade-off for a framework. But PTE is the product \u2014 we own the editor object.",
+        text: "That\u2019s a reasonable trade-off for a framework. But PTE is the product. We own the editor object.",
         marks: ["em"],
       },
       {
         _type: "span",
         _key: "p08c.4",
-        text: " We don\u2019t need the indirection. Post-fork, state lives where it belongs: directly on the instance. Fast, inspectable, simple.",
+        text: " We don\u2019t need the indirection. After the fork, state goes directly on the instance where it belongs.",
         marks: [],
       },
     ],
@@ -418,7 +418,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p09.0",
-        text: "What we actually use Slate for, at this point, is DOM reconciliation and input handling. Everything else \u2014 the event system, the state model, the schema enforcement, the render dispatch, the mutation pipeline \u2014 we\u2019ve already rebuilt.",
+        text: "What we actually use Slate for, at this point, is DOM reconciliation and input handling. Everything else we\u2019ve already rebuilt: the event system, the state model, schema enforcement, render dispatch, the mutation pipeline.",
         marks: [],
       },
     ],
@@ -469,7 +469,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p11.2",
-        text: " it breaks, in ways that are uniquely expensive to debug and fix.",
+        text: " it breaks, in ways that are expensive to debug and uniquely hard to fix.",
         marks: [],
       },
     ],
@@ -495,7 +495,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p12.2",
-        text: ". Not to PTE logic. Not to Slate logic. To the ",
+        text: ". Not PTE logic, not Slate logic, but the ",
         marks: [],
       },
       { _type: "span", _key: "p12.3", text: "boundary", marks: ["em"] },
@@ -658,7 +658,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p14.2",
-        text: " handling, or the interaction between any of them. Developers have to hold three systems in their heads simultaneously. The translation layer creates a combinatorial bug surface: 8 operation types \u00d7 2 sync directions \u00d7 depth branching \u00d7 type handling = roughly 96 code paths. Our single largest test file \u2014 50KB \u2014 exists solely to verify that the dual-model sync doesn\u2019t drift.",
+        text: " handling, or somewhere in the interaction between all three. You have to hold three systems in your head at once. The translation layer creates a combinatorial bug surface: 8 operation types \u00d7 2 sync directions \u00d7 depth branching \u00d7 type handling = roughly 96 code paths. Our single largest test file is 50KB, and it exists solely to verify that the dual-model sync doesn\u2019t drift.",
         marks: [],
       },
     ],
@@ -718,7 +718,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p16.0",
-        text: "This isn\u2019t tech debt we can pay down incrementally. It\u2019s architectural friction that\u2019s baked into the boundary between two systems.",
+        text: "You can\u2019t pay this down incrementally. It\u2019s architectural friction baked into the boundary itself.",
         marks: [],
       },
     ],
@@ -830,7 +830,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p20.2",
-        text: " override \u2014 today a simple boolean check \u2014 must become context-dependent. Selection conversion gets deeper. The 30KB block insertion file gets worse.",
+        text: " override, today a simple boolean check, must become context-dependent. Selection conversion gets deeper. The 30KB block insertion file gets worse.",
         marks: [],
       },
     ],
@@ -844,7 +844,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p21.0",
-        text: "We could build containers on top of the current architecture. But we\u2019d be adding a third layer of complexity to a system that\u2019s already struggling under two. The translation layer doesn\u2019t just make containers harder \u2014 it makes them fragile in ways that will cost us for years.",
+        text: "We could build containers on top of the current architecture. But we\u2019d be adding a third layer of complexity to a system that\u2019s already struggling under two. The translation layer doesn\u2019t just make containers harder. It makes them fragile in ways that will cost us for years.",
         marks: [],
       },
     ],
@@ -886,7 +886,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p22.2",
-        text: ". Invalid states, unexpected node types, missing paths \u2014 Slate crashes by design, treating these as programmer errors that should surface loudly.",
+        text: ". Invalid states, unexpected node types, missing paths: Slate crashes by design, treating these as programmer errors that should surface loudly.",
         marks: [],
       },
     ],
@@ -940,7 +940,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p25.0",
-        text: "Owning the editor code lets us take a fundamentally different approach: ",
+        text: "Owning the editor code lets us take a different approach: ",
         marks: [],
       },
       {
@@ -952,7 +952,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p25.2",
-        text: ". Detect invalid states and normalize them back to valid. Surface errors in terms of block keys, schema types, and field names \u2014 concepts PTE developers understand. Render a corrupted block as a fallback instead of crashing the entire editor. Set error boundaries at the PT level (per-block, per-container) rather than the Slate level (per-operation).",
+        text: ". Detect invalid states and normalize them. Surface errors in terms of block keys, schema types, and field names that PTE developers actually understand. Render a corrupted block as a fallback instead of crashing the entire editor. Set error boundaries at the block level, not the operation level.",
         marks: [],
       },
     ],
@@ -1010,7 +1010,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p28.0",
-        text: "Slate doesn\u2019t have a dedicated maintainer driving its roadmap. There\u2019s no coordinated architectural direction. Contributions come in, some get merged, but there\u2019s no one steering the project toward a vision.",
+        text: "The honest answer is that Slate doesn\u2019t have a dedicated maintainer driving its roadmap. There\u2019s no coordinated architectural direction. Contributions come in, some get merged, but nobody\u2019s steering the project toward a vision. Changes come from downstream users fixing things they need fixed, mostly drive-by contributions.",
         marks: [],
       },
     ],
@@ -1024,7 +1024,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p29.0",
-        text: "Recent changes have been bug fixes and browser compatibility patches: removing the immer dependency, Shadow DOM fixes for Android, composition event handling. These are real improvements, and we\u2019d want to cherry-pick them. But there\u2019s no stream of innovations to miss. The features PTE needs \u2014 container support, a PT-native data model, multi-callback rendering \u2014 are things Slate will never provide. They\u2019re specific to Portable Text.",
+        text: "Recent changes have been bug fixes and browser compatibility patches: removing the immer dependency, Shadow DOM fixes for Android, composition event handling. These are real improvements, and we\u2019d want to cherry-pick them. But there\u2019s no stream of innovations to miss. The features PTE needs (container support, a PT-native data model, multi-callback rendering) are things Slate will never provide. They\u2019re specific to Portable Text.",
         marks: [],
       },
     ],
@@ -1038,7 +1038,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p30.0",
-        text: "We\u2019re not walking away from an active partnership. We\u2019re acknowledging that we\u2019ve been maintaining our own editor for a while now \u2014 we just haven\u2019t made it official.",
+        text: "We\u2019re not walking away from an active partnership. We\u2019re acknowledging that we\u2019ve been maintaining our own editor for a while now. We just haven\u2019t made it official.",
         marks: [],
       },
     ],
@@ -1068,7 +1068,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p31.0",
-        text: "This isn\u2019t a rewrite. It\u2019s a recognition of reality, followed by a methodical simplification.",
+        text: "This isn\u2019t a rewrite. It\u2019s a recognition of where we already are, followed by a methodical simplification.",
         marks: [],
       },
     ],
@@ -1108,7 +1108,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p31b.6",
-        text: ". This is purely an internal restructuring \u2014 the public surface doesn\u2019t change at all.",
+        text: ". This is purely an internal restructuring. The public surface doesn\u2019t change at all.",
         marks: [],
       },
     ],
@@ -1134,14 +1134,14 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p32.7",
-        text: " into the PTE monorepo as internal packages. Remove the external npm dependencies. Strip the 78% of Slate\u2019s API surface we don\u2019t use. All existing tests pass \u2014 behavioral equivalence verified. And we fix a real production headache: we don\u2019t control how Slate declares ",
+        text: " into the PTE monorepo as internal packages. Remove the external npm dependencies. Strip the 78% of Slate\u2019s API surface we don\u2019t use. All existing tests pass, behavioral equivalence verified. This also fixes a real production headache: we don\u2019t control how Slate declares ",
         marks: [],
       },
       { _type: "span", _key: "p32.8", text: "slate-dom", marks: ["code"] },
       {
         _type: "span",
         _key: "p32.9",
-        text: " as a peer dependency, which means Canvas \u2014 which depends on PTE both directly and through Sanity \u2014 ends up pulling in ",
+        text: " as a peer dependency, which means Canvas (which depends on PTE both directly and through Sanity) ends up pulling in ",
         marks: [],
       },
       { _type: "span", _key: "p32.10", text: "slate-dom", marks: ["code"] },
@@ -1168,14 +1168,14 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p33.1",
-        text: " With the code in-house, we can start collapsing the translation layer piece by piece. Eliminate the dual-model sync \u2014 make Slate\u2019s tree ",
+        text: " With the code in-house, we can start collapsing the translation layer piece by piece. Eliminate the dual-model sync so Slate\u2019s tree ",
         marks: [],
       },
       { _type: "span", _key: "p33.2", text: "be", marks: ["em"] },
       {
         _type: "span",
         _key: "p33.3",
-        text: " the PT tree. Merge the render pipeline so PTE\u2019s multi-callback dispatch is first-class, not a layer on top. Unify normalization into a single pass. Merge the two Editable components (PTE\u2019s 27KB wrapper + Slate\u2019s 76KB = 103KB today; target ~45\u201350KB unified). Each change is a focused PR with clear before/after.",
+        text: " the PT tree. Merge the render pipeline so PTE\u2019s multi-callback dispatch is first-class instead of a layer on top. Unify normalization into a single pass. Merge the two Editable components (PTE\u2019s 27KB wrapper + Slate\u2019s 76KB = 103KB today; target ~45\u201350KB unified). Each change is a focused PR with clear before/after.",
         marks: [],
       },
     ],
@@ -1189,7 +1189,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p34.0",
-        text: "Step 1 is low-risk and immediately beneficial \u2014 we stop depending on an external package that doesn\u2019t have a dedicated maintainer driving its roadmap, and we can strip dead code. Step 2 is where the real gains compound: fewer bugs, an estimated ",
+        text: "Step 1 is low-risk and immediately beneficial. We stop depending on an external package with no dedicated maintainer, and we can start stripping dead code. Step 2 is where the real gains compound: fewer bugs, an estimated ",
         marks: [],
       },
       {
@@ -1222,7 +1222,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p35.2",
-        text: ", not grow. We\u2019re not adding Slate\u2019s 513KB on top of our 493KB \u2014 we\u2019re collapsing both into something smaller and more coherent than either.",
+        text: ", not grow. We\u2019re not adding Slate\u2019s code on top of ours. We\u2019re collapsing both into something smaller and more coherent than either.",
         marks: [],
       },
     ],
@@ -1252,7 +1252,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p36.0",
-        text: "Let\u2019s be clear about what we\u2019re preserving. Slate\u2019s core value \u2014 the hard-won ",
+        text: "Let\u2019s be clear about what we\u2019re preserving. Slate\u2019s core value is the hard-won ",
         marks: [],
       },
       {
@@ -1264,7 +1264,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p36.2",
-        text: " handling, DOM reconciliation, selection management, input handling, IME composition, mobile keyboard support \u2014 all of it stays. This is battle-tested code across browsers and edge cases. We\u2019re not rewriting it. We\u2019re owning it.",
+        text: " handling, DOM reconciliation, selection management, input handling, IME composition, mobile keyboard support. All of it stays. This is battle-tested code across browsers and edge cases. We\u2019re not rewriting it. We\u2019re owning it.",
         marks: [],
       },
     ],
@@ -1308,7 +1308,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p37b.0",
-        text: "There\u2019s a version of this argument that\u2019s purely negative \u2014 Slate is holding us back, the translation layer is expensive, we need to escape. But that misses something important: PTE has become a seriously good editor in its own right.",
+        text: "There\u2019s a version of this argument that\u2019s purely negative: Slate is holding us back, the translation layer is expensive, we need to escape. But that misses something. PTE has become a seriously good editor in its own right.",
         marks: [],
       },
     ],
@@ -1322,7 +1322,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p37c.0",
-        text: "Hundreds of test cases. Predictable typing behavior out of the box \u2014 the kind of consistency that a framework like Slate can never offer, because frameworks can\u2019t have opinions. A composable Behavior API that lets us define exactly how every user action should work. A collaborative editing pipeline that handles real-time multi-user editing with conflict resolution.",
+        text: "Hundreds of test cases. Predictable typing behavior out of the box, the kind of consistency a framework can never offer because frameworks can\u2019t have opinions. A composable Behavior API that lets us define exactly how every user action should work. A collaborative editing pipeline that handles real-time multi-user editing with conflict resolution.",
         marks: [],
       },
     ],
@@ -1362,7 +1362,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p37e.0",
-        text: "This isn\u2019t just about removing a dependency. It\u2019s about recognizing that PTE has grown into something that deserves to stand on its own foundation.",
+        text: "This isn\u2019t just about removing a dependency. PTE has grown into something that deserves its own foundation.",
         marks: [],
       },
     ],
@@ -1392,7 +1392,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p38.0",
-        text: "PTE has already built a parallel editor runtime. We maintain 493KB of integration code to bridge between our system and a 513KB framework we\u2019ve mostly outgrown. That bridge costs us roughly one bug per week, 40\u201350 extra function calls per keystroke, and 106KB of tests that exist solely to verify the translation doesn\u2019t drift.",
+        text: "PTE has already built a parallel editor runtime. We maintain 493KB of integration code to bridge between our system and a 513KB framework we\u2019ve mostly outgrown. That bridge costs us about one bug per week, 40\u201350 extra function calls per keystroke, and 106KB of tests that exist just to verify the translation doesn\u2019t drift.",
         marks: [],
       },
     ],
