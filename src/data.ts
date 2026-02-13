@@ -148,7 +148,7 @@ export const PT: PTBlock[] = [
     _type: "block",
     _key: "p04",
     style: "normal",
-    markDefs: [{ _key: "hl1", _type: "highlight" }],
+    markDefs: [],
     children: [
       {
         _type: "span",
@@ -160,7 +160,7 @@ export const PT: PTBlock[] = [
         _type: "span",
         _key: "p04.1",
         text: "the wrapper has outgrown the thing it wraps",
-        marks: ["hl1"],
+        marks: ["highlight"],
       },
       { _type: "span", _key: "p04.2", text: ".", marks: [] },
     ],
@@ -196,7 +196,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p05.1",
-        text: "PTE\u2019s translation layer \u2014 the code that bridges between Portable Text and Slate \u2014 is 493KB of TypeScript across 136 files. Slate itself is 328KB.",
+        text: "PTE\u2019s translation layer \u2014 the code that bridges between Portable Text and Slate \u2014 is 493KB of TypeScript across 136 files. Slate itself is 513KB of source code.",
         marks: ["strong"],
       },
     ],
@@ -205,8 +205,8 @@ export const PT: PTBlock[] = [
   {
     _type: "factBox",
     _key: "fb1",
-    number: "493KB \u2192 328KB",
-    label: "PTE\u2019s translation layer is 1.5\u00d7 the size of Slate itself",
+    number: "493KB \u2192 513KB",
+    label: "PTE\u2019s integration layer is nearly 1:1 with Slate itself",
   },
 
   {
@@ -218,7 +218,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p06.0",
-        text: "We\u2019ve built a system 1.5 times the size of the framework it sits on top of. And that system exists for one reason: to translate between two data models on every single operation.",
+        text: "We\u2019ve built a system nearly the size of the framework it sits on top of \u2014 493KB of integration code spanning behavior routing, dual-model sync, plugin bridge layers, and the translation overhead between them. Much of it reflects PTE\u2019s own sophistication \u2014 a richer event system, predictable typing, collaborative editing. But roughly 175KB exists purely because two data models need to stay in sync, and the rest is shaped and constrained by that boundary.",
         marks: [],
       },
     ],
@@ -573,7 +573,7 @@ export const PT: PTBlock[] = [
     _type: "block",
     _key: "dataloss",
     style: "normal",
-    markDefs: [{ _key: "hl2", _type: "highlight" }],
+    markDefs: [],
     children: [
       {
         _type: "span",
@@ -597,7 +597,7 @@ export const PT: PTBlock[] = [
         _type: "span",
         _key: "dataloss.3",
         text: "Users lost work because two internal models briefly disagreed about the truth, and the wrong one won.",
-        marks: ["hl2"],
+        marks: ["highlight"],
       },
     ],
   },
@@ -1222,7 +1222,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p35.2",
-        text: ", not grow. We\u2019re not adding Slate\u2019s 328KB on top of our 493KB \u2014 we\u2019re collapsing both into something smaller and more coherent than either.",
+        text: ", not grow. We\u2019re not adding Slate\u2019s 513KB on top of our 493KB \u2014 we\u2019re collapsing both into something smaller and more coherent than either.",
         marks: [],
       },
     ],
@@ -1392,7 +1392,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p38.0",
-        text: "PTE has already built a parallel editor runtime. We maintain 493KB of translation code to bridge between our system and a 328KB framework we\u2019ve mostly outgrown. That bridge costs us roughly one bug per week, 40\u201350 extra function calls per keystroke, and 106KB of tests that exist solely to verify the translation doesn\u2019t drift.",
+        text: "PTE has already built a parallel editor runtime. We maintain 493KB of integration code to bridge between our system and a 513KB framework we\u2019ve mostly outgrown. That bridge costs us roughly one bug per week, 40\u201350 extra function calls per keystroke, and 106KB of tests that exist solely to verify the translation doesn\u2019t drift.",
         marks: [],
       },
     ],
@@ -1401,14 +1401,13 @@ export const PT: PTBlock[] = [
     _type: "block",
     _key: "p39",
     style: "normal",
-    markDefs: [{ _key: "hl3", _type: "highlight" }],
+    markDefs: [],
     children: [
-      { _type: "span", _key: "p39.0", text: "", marks: ["hl3"] },
       {
         _type: "span",
-        _key: "p39.1",
+        _key: "p39.0",
         text: "We\u2019re not leaving Slate because it\u2019s bad. We\u2019re leaving because we\u2019ve already left.",
-        marks: ["hl3"],
+        marks: ["highlight"],
       },
     ],
   },
