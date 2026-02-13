@@ -1444,14 +1444,19 @@ export const PT: PTBlock[] = [
 
 export const blockKeys = PT.map((b) => b._key);
 
+/** Type guard for FactBox custom blocks */
+function isFactBox(block: PTBlock): block is FactBox {
+  return block._type === "factBox";
+}
+
 /** Get a short text summary of a block for screen reader announcements */
 export function blockText(key: string): string {
   const block = PT.find((b) => b._key === key);
   if (!block) return key;
-  if (block._type === "factBox") return `${block.number} — ${block.label}`;
+  if (isFactBox(block)) return `${block.number} — ${block.label}`;
   if ("children" in block && Array.isArray(block.children)) {
     const text = block.children
-      .filter((c): c is { text: string } => "text" in c)
+      .filter((c): c is { _type: "span"; text: string } => "text" in c)
       .map((c) => c.text)
       .join("");
     // Truncate long blocks
