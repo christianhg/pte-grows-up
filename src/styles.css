@@ -265,6 +265,13 @@
 }
 .fb:hover .fb-meta { opacity: 1; }
 
+/* ===== Source panel toggle ===== */
+.source-hidden .jp,
+.source-hidden .divider { display: none; }
+.source-hidden .rp { margin: 0 auto; }
+.source-hidden .rc { max-width: 660px; }
+.toggle-source { font-size: 13px; font-weight: 600; }
+
 /* ===== Tab bar (mobile only) ===== */
 .tabs {
   display: none; flex-shrink: 0;
@@ -292,6 +299,7 @@
   .hdr-title { font-size: 11px; }
   .hdr-title .flag, .hdr-title .file { display: none; }
   .hdr-badge { display: none; }
+  .toggle-source { display: none; }
   .divider { display: none; }
   .plabel { display: none; }
   .panels { flex-direction: column; }

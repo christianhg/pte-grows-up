@@ -11,9 +11,13 @@ export function App() {
   const [mobileTab, setMobileTab] = useState<"source" | "rendered">(
     "rendered"
   );
+  const [sourceVisible, setSourceVisible] = useState(true);
 
   return (
-    <div id="ptv" className={dark ? "dark" : "light"}>
+    <div
+      id="ptv"
+      className={`${dark ? "dark" : "light"}${!sourceVisible ? " source-hidden" : ""}`}
+    >
       <div className="hdr">
         <div className="hdr-left">
           <div className="hdr-title">
@@ -24,6 +28,14 @@ export function App() {
         </div>
         <div className="hdr-right">
           <div className="hdr-badge">{PT.length} blocks</div>
+          <button
+            className="toggle toggle-source"
+            onClick={() => setSourceVisible((v) => !v)}
+            title="Toggle source"
+            style={{ opacity: sourceVisible ? 1 : 0.5 }}
+          >
+            &lt;/&gt;
+          </button>
           <button className="toggle" onClick={toggle} title="Toggle theme">
             {dark ? "\u2600\uFE0E" : "\u263E"}
           </button>
