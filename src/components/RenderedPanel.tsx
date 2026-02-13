@@ -86,7 +86,7 @@ export function RenderedPanel({
             onClick={click(value._key)}
             onKeyDown={keyHandler(value._key)}
             tabIndex={0}
-            aria-pressed={isSel(value._key)}
+            aria-current={isSel(value._key) || undefined}
           >
             {children}
           </li>
@@ -100,7 +100,7 @@ export function RenderedPanel({
             onClick={click(value._key)}
             onKeyDown={keyHandler(value._key)}
             tabIndex={0}
-            aria-pressed={isSel(value._key)}
+            aria-current={isSel(value._key) || undefined}
           >
             {children}
           </h1>
@@ -112,7 +112,7 @@ export function RenderedPanel({
             onClick={click(value._key)}
             onKeyDown={keyHandler(value._key)}
             tabIndex={0}
-            aria-pressed={isSel(value._key)}
+            aria-current={isSel(value._key) || undefined}
           >
             {children}
           </h2>
@@ -124,7 +124,7 @@ export function RenderedPanel({
             onClick={click(value._key)}
             onKeyDown={keyHandler(value._key)}
             tabIndex={0}
-            aria-pressed={isSel(value._key)}
+            aria-current={isSel(value._key) || undefined}
           >
             {children}
           </p>
