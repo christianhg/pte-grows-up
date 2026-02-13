@@ -32,6 +32,9 @@
   --jt: #c3a6ff;
   --jm: #ff8f40;
   --fb-meta: #283040;
+  --accent-bg-sel-secondary: rgba(92,207,230,0.05);
+  --accent-border-sel-secondary: rgba(92,207,230,0.12);
+  --accent-line-secondary: rgba(92,207,230,0.4);
   --scrollbar: rgba(92,107,127,0.2);
 }
 
@@ -66,6 +69,9 @@
   --jt: #8250df;
   --jm: #953800;
   --fb-meta: #c0c0b4;
+  --accent-bg-sel-secondary: rgba(9,105,218,0.05);
+  --accent-border-sel-secondary: rgba(9,105,218,0.12);
+  --accent-line-secondary: rgba(9,105,218,0.4);
   --scrollbar: rgba(0,0,0,0.1);
 }
 
@@ -144,9 +150,9 @@
 }
 .jblk:hover { background: var(--accent-bg); }
 .jblk.sel {
-  background: var(--accent-bg-sel);
-  border-color: var(--accent-border-sel);
-  border-left: 3px solid var(--accent);
+  background: var(--accent-bg-sel-secondary);
+  border-color: var(--accent-border-sel-secondary);
+  border-left: 3px solid var(--accent-line-secondary);
 }
 .jblk.collapsed { cursor: pointer; }
 .jcollapse {
