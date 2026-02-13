@@ -466,7 +466,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p12.0",
-        text: "In a recent six-week window, ",
+        text: "In recent weeks, ",
         marks: [],
       },
       {
@@ -993,7 +993,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p28.0",
-        text: "The honest answer is that Slate doesn\u2019t have an active steward. There\u2019s no one driving the project\u2019s architectural direction. The one person with merge access checks in occasionally but isn\u2019t actively involved in development. Changes come from downstream users fixing things they need fixed \u2014 drive-by contributions with no coordinated vision.",
+        text: "Slate doesn\u2019t have a dedicated maintainer driving its roadmap. There\u2019s no coordinated architectural direction. Contributions come in, some get merged, but there\u2019s no one steering the project toward a vision.",
         marks: [],
       },
     ],
@@ -1172,7 +1172,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p34.0",
-        text: "Step 1 is low-risk and immediately beneficial \u2014 we stop depending on an external package with no active steward and we can strip dead code. Step 2 is where the real gains compound: fewer bugs, an estimated ",
+        text: "Step 1 is low-risk and immediately beneficial \u2014 we stop depending on an external package that doesn\u2019t have a dedicated maintainer driving its roadmap, and we can strip dead code. Step 2 is where the real gains compound: fewer bugs, an estimated ",
         marks: [],
       },
       {
