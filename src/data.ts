@@ -1176,14 +1176,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p33.1",
-        text: " With the code in-house, we can start collapsing the translation layer piece by piece. Eliminate the dual-model sync so Slate\u2019s tree ",
-        marks: [],
-      },
-      { _type: "span", _key: "p33.2", text: "be", marks: ["em"] },
-      {
-        _type: "span",
-        _key: "p33.3",
-        text: " the PT tree. Merge the render pipeline so PTE\u2019s multi-callback dispatch is first-class instead of a layer on top. Unify normalization into a single pass. Merge the two Editable components (PTE\u2019s 27KB wrapper + Slate\u2019s 76KB = 103KB today; target ~45\u201350KB unified). Each change is a focused PR with clear before/after.",
+        text: " With the code in-house, we can start collapsing the translation layer piece by piece. Eliminate the dual-model sync and make Slate\u2019s tree the PT tree directly. Merge the render pipeline so PTE\u2019s multi-callback dispatch is first-class instead of a layer on top. Unify normalization into a single pass. Merge the two Editable components (PTE\u2019s 27KB wrapper + Slate\u2019s 76KB = 103KB today; target ~45\u201350KB unified). Each change is a focused PR with clear before/after.",
         marks: [],
       },
     ],
