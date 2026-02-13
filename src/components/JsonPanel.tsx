@@ -99,7 +99,8 @@ export function JsonPanel({
     const { full, collapsed } = collapseBlock(json);
     const content = isSelected || !collapsed ? full : collapsed;
     const cl = `jblk${isSelected ? " sel" : ""}${collapsed && !isSelected ? " collapsed" : ""}`;
-    return `<div class="${cl}" data-key="${b._key}">${content}${i < blocks.length - 1 ? "," : ""}</div>`;
+    const ariaCurrent = isSelected ? ` aria-current="true"` : "";
+    return `<div class="${cl}" data-key="${b._key}"${ariaCurrent}>${content}${i < blocks.length - 1 ? "," : ""}</div>`;
   });
 
   const html = `<span class="jbr">[</span>\n${jsonBlocks.join("\n")}\n<span class="jbr">]</span>`;
@@ -121,6 +122,8 @@ export function JsonPanel({
       ref={panelRef}
       className={`panel jp${hidden ? " hidden" : ""}`}
       id="jp"
+      role="region"
+      aria-label="JSON source"
     >
       <div className="plabel">source</div>
       <div className="jc" dangerouslySetInnerHTML={{ __html: html }} />

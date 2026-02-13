@@ -10,6 +10,7 @@ export function FactBox({ value, selected, onSelect }: FactBoxProps) {
       className={`fb${selected ? " sel" : ""}`}
       data-key={value._key}
       onClick={() => onSelect(value._key)}
+      aria-current={selected || undefined}
     >
       <div className="fb-num">{value.number}</div>
       <div className="fb-label">{value.label}</div>

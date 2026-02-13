@@ -42,8 +42,10 @@ export function RenderedPanel({
   const components: PortableTextComponents = useMemo(
     () => {
       // Helper: block _key is optional in PT types but always present in our data
+      const isSel = (key: string | undefined) =>
+        !!(selectedKey && key === selectedKey);
       const sel = (key: string | undefined) =>
-        selectedKey && key === selectedKey ? " sel" : "";
+        isSel(key) ? " sel" : "";
       const click = (key: string | undefined) => () => {
         if (key) onSelect(key);
       };
@@ -64,6 +66,7 @@ export function RenderedPanel({
             className={`ptb${sel(value._key)}`}
             data-key={value._key}
             onClick={click(value._key)}
+            aria-current={isSel(value._key) || undefined}
           >
             {children}
           </h1>
@@ -73,6 +76,7 @@ export function RenderedPanel({
             className={`ptb${sel(value._key)}`}
             data-key={value._key}
             onClick={click(value._key)}
+            aria-current={isSel(value._key) || undefined}
           >
             {children}
           </h2>
@@ -82,6 +86,7 @@ export function RenderedPanel({
             className={`ptb${sel(value._key)}`}
             data-key={value._key}
             onClick={click(value._key)}
+            aria-current={isSel(value._key) || undefined}
           >
             {children}
           </p>
@@ -114,6 +119,8 @@ export function RenderedPanel({
       ref={panelRef}
       className={`panel rp${hidden ? " hidden" : ""}`}
       id="rp"
+      role="region"
+      aria-label="Rendered article"
     >
       <div className="plabel">rendered</div>
       <div className="rc">

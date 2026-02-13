@@ -31,25 +31,33 @@ export function App() {
           <button
             className="toggle toggle-source"
             onClick={() => setSourceVisible((v) => !v)}
-            title="Toggle source"
+            aria-label={sourceVisible ? "Hide source panel" : "Show source panel"}
             style={{ opacity: sourceVisible ? 1 : 0.5 }}
           >
             &lt;/&gt;
           </button>
-          <button className="toggle" onClick={toggle} title="Toggle theme">
+          <button
+            className="toggle"
+            onClick={toggle}
+            aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
+          >
             {dark ? "\u2600\uFE0E" : "\u263E"}
           </button>
         </div>
       </div>
 
-      <div className="tabs">
+      <div className="tabs" role="tablist">
         <button
+          role="tab"
+          aria-selected={mobileTab === "source"}
           className={`tab${mobileTab === "source" ? " active" : ""}`}
           onClick={() => setMobileTab("source")}
         >
           // source
         </button>
         <button
+          role="tab"
+          aria-selected={mobileTab === "rendered"}
           className={`tab${mobileTab === "rendered" ? " active" : ""}`}
           onClick={() => setMobileTab("rendered")}
         >
