@@ -61,8 +61,12 @@ export function RenderedPanel({
         !!(selectedKey && key === selectedKey);
       const sel = (key: string | undefined) =>
         isSel(key) ? " sel" : "";
-      const click = (key: string | undefined) => () => {
-        if (key) onSelect(key);
+      // Use mouseup + text selection guard: if user dragged to select text, don't trigger block selection
+      const mouseUp = (key: string | undefined) => () => {
+        if (!key) return;
+        const selection = window.getSelection();
+        if (selection && selection.toString().length > 0) return;
+        onSelect(key);
       };
 
       return {
@@ -83,7 +87,7 @@ export function RenderedPanel({
           <li
             className={`ptb${sel(value._key)}`}
             data-key={value._key}
-            onClick={click(value._key)}
+            onMouseUp={mouseUp(value._key)}
             onKeyDown={keyHandler(value._key)}
             tabIndex={0}
             aria-current={isSel(value._key) || undefined}
@@ -97,7 +101,7 @@ export function RenderedPanel({
           <h1
             className={`ptb${sel(value._key)}`}
             data-key={value._key}
-            onClick={click(value._key)}
+            onMouseUp={mouseUp(value._key)}
             onKeyDown={keyHandler(value._key)}
             tabIndex={0}
             aria-current={isSel(value._key) || undefined}
@@ -109,7 +113,7 @@ export function RenderedPanel({
           <h2
             className={`ptb${sel(value._key)}`}
             data-key={value._key}
-            onClick={click(value._key)}
+            onMouseUp={mouseUp(value._key)}
             onKeyDown={keyHandler(value._key)}
             tabIndex={0}
             aria-current={isSel(value._key) || undefined}
@@ -121,7 +125,7 @@ export function RenderedPanel({
           <p
             className={`ptb${sel(value._key)}`}
             data-key={value._key}
-            onClick={click(value._key)}
+            onMouseUp={mouseUp(value._key)}
             onKeyDown={keyHandler(value._key)}
             tabIndex={0}
             aria-current={isSel(value._key) || undefined}

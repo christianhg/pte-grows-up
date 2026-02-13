@@ -12,11 +12,17 @@ export function FactBox({ value, selected, onSelect }: FactBoxProps) {
     }
   };
 
+  const handleMouseUp = () => {
+    const selection = window.getSelection();
+    if (selection && selection.toString().length > 0) return;
+    onSelect(value._key);
+  };
+
   return (
     <div
       className={`fb${selected ? " sel" : ""}`}
       data-key={value._key}
-      onClick={() => onSelect(value._key)}
+      onMouseUp={handleMouseUp}
       onKeyDown={handleKeyDown}
       tabIndex={0}
       role="button"
