@@ -514,9 +514,11 @@ export const PT: PTBlock[] = [
     _type: "block",
     _key: "b1",
     style: "normal",
+    listItem: "bullet",
+    level: 1,
     markDefs: [],
     children: [
-      { _type: "span", _key: "b1.0", text: "\u2022 A field named ", marks: [] },
+      { _type: "span", _key: "b1.0", text: "A field named ", marks: [] },
       { _type: "span", _key: "b1.1", text: "text", marks: ["code"] },
       {
         _type: "span",
@@ -530,12 +532,14 @@ export const PT: PTBlock[] = [
     _type: "block",
     _key: "b2",
     style: "normal",
+    listItem: "bullet",
+    level: 1,
     markDefs: [],
     children: [
       {
         _type: "span",
         _key: "b2.0",
-        text: "\u2022 The patch translation emitted operations that treated ",
+        text: "The patch translation emitted operations that treated ",
         marks: [],
       },
       { _type: "span", _key: "b2.1", text: "null", marks: ["code"] },
@@ -551,12 +555,14 @@ export const PT: PTBlock[] = [
     _type: "block",
     _key: "b3",
     style: "normal",
+    listItem: "bullet",
+    level: 1,
     markDefs: [],
     children: [
       {
         _type: "span",
         _key: "b3.0",
-        text: "\u2022 Duplicate ",
+        text: "Duplicate ",
         marks: [],
       },
       { _type: "span", _key: "b3.1", text: "_key", marks: ["code"] },
@@ -606,12 +612,14 @@ export const PT: PTBlock[] = [
     _type: "block",
     _key: "b5",
     style: "normal",
+    listItem: "bullet",
+    level: 1,
     markDefs: [],
     children: [
       {
         _type: "span",
         _key: "b5.0",
-        text: "\u2022 Two separate sync machine failures when block types or children changed during external sync.",
+        text: "Two separate sync machine failures when block types or children changed during external sync.",
         marks: [],
       },
     ],

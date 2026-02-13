@@ -60,6 +60,21 @@ export function RenderedPanel({
           />
         ),
       },
+      list: {
+        bullet: ({ children }) => <ul className="pt-list">{children}</ul>,
+      },
+      listItem: {
+        bullet: ({ children, value }) => (
+          <li
+            className={`ptb${sel(value._key)}`}
+            data-key={value._key}
+            onClick={click(value._key)}
+            aria-current={isSel(value._key) || undefined}
+          >
+            {children}
+          </li>
+        ),
+      },
       block: {
         h1: ({ children, value }) => (
           <h1
