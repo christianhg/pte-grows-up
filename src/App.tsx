@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PT } from "./data";
+import { PT, blockText } from "./data";
 import { useSelection } from "./useSelection";
 import { useTheme } from "./useTheme";
 import { JsonPanel } from "./components/JsonPanel";
@@ -18,6 +18,10 @@ export function App() {
       id="ptv"
       className={`${dark ? "dark" : "light"}${!sourceVisible ? " source-hidden" : ""}`}
     >
+      <a href="#rp" className="skip-link">
+        Skip to article
+      </a>
+
       <div className="hdr">
         <div className="hdr-left">
           <div className="hdr-title">
@@ -32,6 +36,7 @@ export function App() {
             className="toggle toggle-source"
             onClick={() => setSourceVisible((v) => !v)}
             aria-label={sourceVisible ? "Hide source panel" : "Show source panel"}
+            aria-pressed={sourceVisible}
             style={{ opacity: sourceVisible ? 1 : 0.5 }}
           >
             &lt;/&gt;
@@ -46,10 +51,11 @@ export function App() {
         </div>
       </div>
 
-      <div className="tabs" role="tablist">
+      <div className="tabs" role="tablist" aria-label="View mode">
         <button
           role="tab"
           aria-selected={mobileTab === "source"}
+          aria-controls="jp"
           className={`tab${mobileTab === "source" ? " active" : ""}`}
           onClick={() => setMobileTab("source")}
         >
@@ -58,6 +64,7 @@ export function App() {
         <button
           role="tab"
           aria-selected={mobileTab === "rendered"}
+          aria-controls="rp"
           className={`tab${mobileTab === "rendered" ? " active" : ""}`}
           onClick={() => setMobileTab("rendered")}
         >
@@ -79,6 +86,11 @@ export function App() {
           onSelect={select}
           hidden={mobileTab !== "rendered"}
         />
+      </div>
+
+      {/* Live region for screen reader selection announcements */}
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {selectedKey ? `Selected: ${blockText(selectedKey)}` : ""}
       </div>
     </div>
   );

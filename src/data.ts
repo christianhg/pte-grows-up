@@ -1450,3 +1450,19 @@ export const PT: PTBlock[] = [
 ];
 
 export const blockKeys = PT.map((b) => b._key);
+
+/** Get a short text summary of a block for screen reader announcements */
+export function blockText(key: string): string {
+  const block = PT.find((b) => b._key === key);
+  if (!block) return key;
+  if (block._type === "factBox") return `${block.number} — ${block.label}`;
+  if ("children" in block && Array.isArray(block.children)) {
+    const text = block.children
+      .filter((c): c is { text: string } => "text" in c)
+      .map((c) => c.text)
+      .join("");
+    // Truncate long blocks
+    return text.length > 80 ? text.slice(0, 80) + "…" : text;
+  }
+  return key;
+}

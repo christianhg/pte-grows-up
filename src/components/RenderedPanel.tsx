@@ -1,8 +1,9 @@
-import { useRef, useEffect, useMemo } from "react";
+import { useRef, useEffect, useMemo, useCallback } from "react";
 import { PortableText } from "@portabletext/react";
 import type { PortableTextComponents } from "@portabletext/react";
 import type { PTBlock } from "../data";
 import { FactBox } from "./FactBox";
+import { prefersReducedMotion } from "../a11y";
 
 interface RenderedPanelProps {
   blocks: PTBlock[];
@@ -36,8 +37,22 @@ export function RenderedPanel({
       (elRect.top - panelRect.top) -
       panelRect.height / 2 +
       elRect.height / 2;
-    panel.scrollTo({ top: Math.max(0, target), behavior: "smooth" });
+    panel.scrollTo({
+      top: Math.max(0, target),
+      behavior: prefersReducedMotion() ? "auto" : "smooth",
+    });
   }, [selectedKey]);
+
+  // Keyboard handler for Enter/Space on selectable blocks
+  const keyHandler = useCallback(
+    (key: string | undefined) => (e: React.KeyboardEvent) => {
+      if (key && (e.key === "Enter" || e.key === " ")) {
+        e.preventDefault();
+        onSelect(key);
+      }
+    },
+    [onSelect]
+  );
 
   const components: PortableTextComponents = useMemo(
     () => {
@@ -69,7 +84,9 @@ export function RenderedPanel({
             className={`ptb${sel(value._key)}`}
             data-key={value._key}
             onClick={click(value._key)}
-            aria-current={isSel(value._key) || undefined}
+            onKeyDown={keyHandler(value._key)}
+            tabIndex={0}
+            aria-pressed={isSel(value._key)}
           >
             {children}
           </li>
@@ -81,7 +98,9 @@ export function RenderedPanel({
             className={`ptb${sel(value._key)}`}
             data-key={value._key}
             onClick={click(value._key)}
-            aria-current={isSel(value._key) || undefined}
+            onKeyDown={keyHandler(value._key)}
+            tabIndex={0}
+            aria-pressed={isSel(value._key)}
           >
             {children}
           </h1>
@@ -91,7 +110,9 @@ export function RenderedPanel({
             className={`ptb${sel(value._key)}`}
             data-key={value._key}
             onClick={click(value._key)}
-            aria-current={isSel(value._key) || undefined}
+            onKeyDown={keyHandler(value._key)}
+            tabIndex={0}
+            aria-pressed={isSel(value._key)}
           >
             {children}
           </h2>
@@ -101,7 +122,9 @@ export function RenderedPanel({
             className={`ptb${sel(value._key)}`}
             data-key={value._key}
             onClick={click(value._key)}
-            aria-current={isSel(value._key) || undefined}
+            onKeyDown={keyHandler(value._key)}
+            tabIndex={0}
+            aria-pressed={isSel(value._key)}
           >
             {children}
           </p>
@@ -117,7 +140,7 @@ export function RenderedPanel({
             href={value?.href}
             className="lnk"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
           >
             {children}
@@ -126,7 +149,7 @@ export function RenderedPanel({
       },
     };
     },
-    [selectedKey, onSelect]
+    [selectedKey, onSelect, keyHandler]
   );
 
   return (

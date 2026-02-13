@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import type { PTBlock } from "../data";
+import { prefersReducedMotion } from "../a11y";
 
 const COLLAPSE_LINES = 8;
 
@@ -56,7 +57,7 @@ function collapseBlock(json: string): { full: string; collapsed: string | null }
   const hidden = lines.length - COLLAPSE_LINES;
   return {
     full: json,
-    collapsed: `${preview}\n<span class="jcollapse">  … ${hidden} more lines</span>`,
+    collapsed: `${preview}\n<span class="jcollapse">  ▸ ${hidden} more lines</span>`,
   };
 }
 
@@ -90,7 +91,10 @@ export function JsonPanel({
       (elRect.top - panelRect.top) -
       panelRect.height / 2 +
       elRect.height / 2;
-    panel.scrollTo({ top: Math.max(0, target), behavior: "smooth" });
+    panel.scrollTo({
+      top: Math.max(0, target),
+      behavior: prefersReducedMotion() ? "auto" : "smooth",
+    });
   }, [selectedKey]);
 
   const jsonBlocks = blocks.map((b, i) => {
@@ -99,22 +103,35 @@ export function JsonPanel({
     const { full, collapsed } = collapseBlock(json);
     const content = isSelected || !collapsed ? full : collapsed;
     const cl = `jblk${isSelected ? " sel" : ""}${collapsed && !isSelected ? " collapsed" : ""}`;
-    const ariaCurrent = isSelected ? ` aria-current="true"` : "";
-    return `<div class="${cl}" data-key="${b._key}"${ariaCurrent}>${content}${i < blocks.length - 1 ? "," : ""}</div>`;
+    const ariaPressed = isSelected ? "true" : "false";
+    return `<div class="${cl}" data-key="${b._key}" tabindex="0" role="button" aria-label="Select block ${b._key}" aria-pressed="${ariaPressed}">${content}${i < blocks.length - 1 ? "," : ""}</div>`;
   });
 
   const html = `<span class="jbr">[</span>\n${jsonBlocks.join("\n")}\n<span class="jbr">]</span>`;
 
-  // Wire click handlers after render
+  // Wire click and keyboard handlers after render (delegated, since innerHTML)
   useEffect(() => {
     const panel = panelRef.current;
     if (!panel) return;
-    const handler = (e: MouseEvent) => {
+    const clickHandler = (e: MouseEvent) => {
       const blk = (e.target as HTMLElement).closest(".jblk");
       if (blk) onSelect((blk as HTMLElement).dataset.key!);
     };
-    panel.addEventListener("click", handler);
-    return () => panel.removeEventListener("click", handler);
+    const keyHandler = (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        const blk = (e.target as HTMLElement).closest(".jblk");
+        if (blk) {
+          e.preventDefault();
+          onSelect((blk as HTMLElement).dataset.key!);
+        }
+      }
+    };
+    panel.addEventListener("click", clickHandler);
+    panel.addEventListener("keydown", keyHandler);
+    return () => {
+      panel.removeEventListener("click", clickHandler);
+      panel.removeEventListener("keydown", keyHandler);
+    };
   }, [onSelect]);
 
   return (
@@ -126,7 +143,7 @@ export function JsonPanel({
       aria-label="JSON source"
     >
       <div className="plabel">source</div>
-      <div className="jc" dangerouslySetInnerHTML={{ __html: html }} />
+      <div className="jc" role="code" dangerouslySetInnerHTML={{ __html: html }} />
     </div>
   );
 }

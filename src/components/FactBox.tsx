@@ -5,12 +5,23 @@ interface FactBoxProps {
 }
 
 export function FactBox({ value, selected, onSelect }: FactBoxProps) {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onSelect(value._key);
+    }
+  };
+
   return (
     <div
       className={`fb${selected ? " sel" : ""}`}
       data-key={value._key}
       onClick={() => onSelect(value._key)}
-      aria-current={selected || undefined}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+      aria-pressed={selected}
+      aria-label={`${value.number} — ${value.label}`}
     >
       <div className="fb-num">{value.number}</div>
       <div className="fb-label">{value.label}</div>
