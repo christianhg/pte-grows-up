@@ -32,9 +32,13 @@
   --jt: #c3a6ff;
   --jm: #ff8f40;
   --fb-meta: #283040;
-  --accent-bg-sel-secondary: rgba(92,207,230,0.05);
-  --accent-border-sel-secondary: rgba(92,207,230,0.12);
   --accent-line-secondary: rgba(92,207,230,0.4);
+  --fb-accent: #ffcc66;
+  --fb-bg: rgba(255,204,102,0.06);
+  --fb-border: rgba(255,204,102,0.2);
+  --fb-hover: rgba(255,204,102,0.1);
+  --fb-sel-bg: rgba(255,204,102,0.12);
+  --fb-sel-border: rgba(255,204,102,0.3);
   --scrollbar: rgba(92,107,127,0.2);
 }
 
@@ -69,9 +73,13 @@
   --jt: #8250df;
   --jm: #953800;
   --fb-meta: #c0c0b4;
-  --accent-bg-sel-secondary: rgba(9,105,218,0.05);
-  --accent-border-sel-secondary: rgba(9,105,218,0.12);
   --accent-line-secondary: rgba(9,105,218,0.4);
+  --fb-accent: #b45309;
+  --fb-bg: rgba(180,83,9,0.04);
+  --fb-border: rgba(180,83,9,0.15);
+  --fb-hover: rgba(180,83,9,0.08);
+  --fb-sel-bg: rgba(180,83,9,0.1);
+  --fb-sel-border: rgba(180,83,9,0.25);
   --scrollbar: rgba(0,0,0,0.1);
 }
 
@@ -150,8 +158,8 @@
 }
 .jblk:hover { background: var(--accent-bg); }
 .jblk.sel {
-  background: var(--accent-bg-sel-secondary);
-  border-color: var(--accent-border-sel-secondary);
+  background: transparent;
+  border-color: transparent;
   border-left: 3px solid var(--accent-line-secondary);
 }
 .jblk.collapsed { cursor: pointer; }
@@ -226,27 +234,27 @@
 
 /* ===== Fact boxes ===== */
 .fb {
-  margin: 16px 0; padding: 14px 16px; border-radius: 4px; cursor: pointer;
-  border: 1px solid var(--border);
-  background: var(--jp-bg);
-  border-left: 3px solid var(--accent);
+  margin: 24px 0; padding: 18px 20px; border-radius: 4px; cursor: pointer;
+  border: 1px solid var(--fb-border);
+  background: var(--fb-bg);
+  border-left: 3px solid var(--fb-accent);
   transition: background 0.12s, border-color 0.12s;
   position: relative;
 }
-.fb:hover { background: var(--accent-bg); }
+.fb:hover { background: var(--fb-hover); }
 .fb.sel {
-  background: var(--accent-bg-sel);
-  border-color: var(--accent-border-sel);
-  border-left-color: var(--accent);
+  background: var(--fb-sel-bg);
+  border-color: var(--fb-sel-border);
+  border-left-color: var(--fb-accent);
 }
 .fb-num {
   font-size: 26px; font-weight: 800; letter-spacing: -0.02em;
-  color: var(--accent);
-  margin-bottom: 2px;
+  color: var(--fb-accent);
+  margin-bottom: 4px;
 }
 .fb-label {
-  font-size: 12px; font-weight: 400; line-height: 1.5;
-  color: var(--muted);
+  font-size: 12px; font-weight: 400; line-height: 1.6;
+  color: var(--text);
 }
 .fb-meta {
   position: absolute; top: 8px; right: 10px;
