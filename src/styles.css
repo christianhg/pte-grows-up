@@ -148,6 +148,12 @@
   border-color: var(--accent-border-sel);
   border-left: 3px solid var(--accent);
 }
+.jblk.collapsed { cursor: pointer; }
+.jcollapse {
+  color: var(--dim); font-style: italic;
+  display: inline-block; padding: 2px 0;
+}
+.jblk.collapsed:hover .jcollapse { color: var(--accent); }
 .jk { color: var(--jk); }
 .js { color: var(--js); }
 .jn { color: var(--jn); }

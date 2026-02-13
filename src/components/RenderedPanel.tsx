@@ -19,14 +19,16 @@ export function RenderedPanel({
 }: RenderedPanelProps) {
   const panelRef = useRef<HTMLDivElement>(null);
 
-  // Scroll to selected block on hash change
+  // Scroll to selected block when selection changes
+  // Use offsetParent to check actual visibility (null when display:none on mobile)
   useEffect(() => {
-    if (!selectedKey || hidden) return;
-    const el = panelRef.current?.querySelector(
+    if (!selectedKey) return;
+    const panel = panelRef.current;
+    if (!panel || !panel.offsetParent) return;
+    const el = panel.querySelector(
       `.ptb[data-key="${selectedKey}"], .fb[data-key="${selectedKey}"]`
     );
     if (!el) return;
-    const panel = panelRef.current!;
     const panelRect = panel.getBoundingClientRect();
     const elRect = el.getBoundingClientRect();
     const target =
@@ -35,7 +37,7 @@ export function RenderedPanel({
       panelRect.height / 2 +
       elRect.height / 2;
     panel.scrollTo({ top: Math.max(0, target), behavior: "smooth" });
-  }, [selectedKey, hidden]);
+  }, [selectedKey]);
 
   const components: PortableTextComponents = useMemo(
     () => {

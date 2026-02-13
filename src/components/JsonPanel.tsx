@@ -1,6 +1,8 @@
 import { useRef, useEffect } from "react";
 import type { PTBlock } from "../data";
 
+const COLLAPSE_LINES = 8;
+
 function esc(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -47,6 +49,17 @@ function hj(obj: unknown, ind: number): string {
   return String(obj);
 }
 
+function collapseBlock(json: string): { full: string; collapsed: string | null } {
+  const lines = json.split("\n");
+  if (lines.length <= COLLAPSE_LINES) return { full: json, collapsed: null };
+  const preview = lines.slice(0, COLLAPSE_LINES).join("\n");
+  const hidden = lines.length - COLLAPSE_LINES;
+  return {
+    full: json,
+    collapsed: `${preview}\n<span class="jcollapse">  … ${hidden} more lines</span>`,
+  };
+}
+
 interface JsonPanelProps {
   blocks: PTBlock[];
   selectedKey: string | null;
@@ -62,14 +75,14 @@ export function JsonPanel({
 }: JsonPanelProps) {
   const panelRef = useRef<HTMLDivElement>(null);
 
-  // Scroll to selected block on hash change
+  // Scroll to selected block when selection changes
+  // Use offsetParent to check actual visibility (null when display:none on mobile)
   useEffect(() => {
-    if (!selectedKey || hidden) return;
-    const el = panelRef.current?.querySelector(
-      `.jblk[data-key="${selectedKey}"]`
-    );
+    if (!selectedKey) return;
+    const panel = panelRef.current;
+    if (!panel || !panel.offsetParent) return;
+    const el = panel.querySelector(`.jblk[data-key="${selectedKey}"]`);
     if (!el) return;
-    const panel = panelRef.current!;
     const panelRect = panel.getBoundingClientRect();
     const elRect = el.getBoundingClientRect();
     const target =
@@ -78,12 +91,15 @@ export function JsonPanel({
       panelRect.height / 2 +
       elRect.height / 2;
     panel.scrollTo({ top: Math.max(0, target), behavior: "smooth" });
-  }, [selectedKey, hidden]);
+  }, [selectedKey]);
 
   const jsonBlocks = blocks.map((b, i) => {
     const json = hj(b, 1);
-    const cl = `jblk${selectedKey === b._key ? " sel" : ""}`;
-    return `<div class="${cl}" data-key="${b._key}">${json}${i < blocks.length - 1 ? "," : ""}</div>`;
+    const isSelected = selectedKey === b._key;
+    const { full, collapsed } = collapseBlock(json);
+    const content = isSelected || !collapsed ? full : collapsed;
+    const cl = `jblk${isSelected ? " sel" : ""}${collapsed && !isSelected ? " collapsed" : ""}`;
+    return `<div class="${cl}" data-key="${b._key}">${content}${i < blocks.length - 1 ? "," : ""}</div>`;
   });
 
   const html = `<span class="jbr">[</span>\n${jsonBlocks.join("\n")}\n<span class="jbr">]</span>`;
