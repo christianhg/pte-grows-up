@@ -35,13 +35,13 @@ export function useSelection() {
   const selectNext = useCallback(() => {
     const idx = selectedKey ? blockKeys.indexOf(selectedKey) : -1;
     const next = idx < blockKeys.length - 1 ? idx + 1 : 0;
-    setHash(blockKeys[next]);
+    setHash(blockKeys[next] ?? null);
   }, [selectedKey]);
 
   const selectPrev = useCallback(() => {
     const idx = selectedKey ? blockKeys.indexOf(selectedKey) : -1;
     const next = idx > 0 ? idx - 1 : blockKeys.length - 1;
-    setHash(blockKeys[next]);
+    setHash(blockKeys[next] ?? null);
   }, [selectedKey]);
 
   const deselect = useCallback(() => {

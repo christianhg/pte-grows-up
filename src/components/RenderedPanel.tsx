@@ -38,7 +38,15 @@ export function RenderedPanel({
   }, [selectedKey, hidden]);
 
   const components: PortableTextComponents = useMemo(
-    () => ({
+    () => {
+      // Helper: block _key is optional in PT types but always present in our data
+      const sel = (key: string | undefined) =>
+        selectedKey && key === selectedKey ? " sel" : "";
+      const click = (key: string | undefined) => () => {
+        if (key) onSelect(key);
+      };
+
+      return {
       types: {
         factBox: ({ value }) => (
           <FactBox
@@ -51,27 +59,27 @@ export function RenderedPanel({
       block: {
         h1: ({ children, value }) => (
           <h1
-            className={`ptb${selectedKey === value._key ? " sel" : ""}`}
+            className={`ptb${sel(value._key)}`}
             data-key={value._key}
-            onClick={() => onSelect(value._key)}
+            onClick={click(value._key)}
           >
             {children}
           </h1>
         ),
         h2: ({ children, value }) => (
           <h2
-            className={`ptb${selectedKey === value._key ? " sel" : ""}`}
+            className={`ptb${sel(value._key)}`}
             data-key={value._key}
-            onClick={() => onSelect(value._key)}
+            onClick={click(value._key)}
           >
             {children}
           </h2>
         ),
         normal: ({ children, value }) => (
           <p
-            className={`ptb${selectedKey === value._key ? " sel" : ""}`}
+            className={`ptb${sel(value._key)}`}
             data-key={value._key}
-            onClick={() => onSelect(value._key)}
+            onClick={click(value._key)}
           >
             {children}
           </p>
@@ -94,7 +102,8 @@ export function RenderedPanel({
           </a>
         ),
       },
-    }),
+    };
+    },
     [selectedKey, onSelect]
   );
 
