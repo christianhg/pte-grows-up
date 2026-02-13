@@ -77,12 +77,29 @@ export const PT: PTBlock[] = [
         _type: "link",
         href: "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable",
       },
+      {
+        _key: "lnk4",
+        _type: "link",
+        href: "https://github.com/portabletext/editor",
+      },
     ],
     children: [
       {
         _type: "span",
-        _key: "p02.0",
-        text: "When PTE needed a foundation for rich text editing, Slate was the right call. It gave us battle-tested ",
+        _key: "p02.0a",
+        text: "When ",
+        marks: [],
+      },
+      {
+        _type: "span",
+        _key: "p02.0b",
+        text: "PTE",
+        marks: ["lnk4"],
+      },
+      {
+        _type: "span",
+        _key: "p02.0c",
+        text: " needed a foundation for rich text editing, Slate was the right call. It gave us battle-tested ",
         marks: [],
       },
       {
