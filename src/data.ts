@@ -34,7 +34,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "subtitle.0",
-        text: "Why PTE should internalize Slate \u2014 and why the timing is now",
+        text: "Why PTE should internalize Slate, and why the timing is now",
         marks: ["strong"],
       },
     ],
