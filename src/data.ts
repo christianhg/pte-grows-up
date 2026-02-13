@@ -361,6 +361,39 @@ export const PT: PTBlock[] = [
 
   {
     _type: "block",
+    _key: "p08c",
+    style: "normal",
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        _key: "p08c.0",
+        text: "Even the way Slate stores state reflects the mismatch. As a framework, Slate can\u2019t put state directly on the ",
+        marks: [],
+      },
+      { _type: "span", _key: "p08c.1", text: "editor", marks: ["code"] },
+      {
+        _type: "span",
+        _key: "p08c.2",
+        text: " object \u2014 it doesn\u2019t own it, and writing properties there might collide with consumer code. So it uses WeakMaps: slower than direct property access, and notoriously hard to debug because you can\u2019t inspect WeakMap contents in devtools. ",
+        marks: [],
+      },
+      {
+        _type: "span",
+        _key: "p08c.3",
+        text: "That\u2019s a reasonable trade-off for a framework. But PTE is the product \u2014 we own the editor object.",
+        marks: ["em"],
+      },
+      {
+        _type: "span",
+        _key: "p08c.4",
+        text: " We don\u2019t need the indirection. Post-fork, state lives where it belongs: directly on the instance. Fast, inspectable, simple.",
+        marks: [],
+      },
+    ],
+  },
+  {
+    _type: "block",
     _key: "p09",
     style: "normal",
     markDefs: [],
@@ -1229,6 +1262,90 @@ export const PT: PTBlock[] = [
         _type: "span",
         _key: "p37.0",
         text: "What we\u2019re removing is the translation layer between Slate and PTE. The dual-model sync. The patch conversion. The render dispatch indirection. The double normalization pass. The 96 code paths that exist only because two systems need to agree on what the document looks like.",
+        marks: [],
+      },
+    ],
+  },
+
+  // === PTE has earned this ===
+  {
+    _type: "block",
+    _key: "h2g2",
+    style: "h2",
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        _key: "h2g2.0",
+        text: "PTE has earned this",
+        marks: [],
+      },
+    ],
+  },
+  {
+    _type: "block",
+    _key: "p37b",
+    style: "normal",
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        _key: "p37b.0",
+        text: "There\u2019s a version of this argument that\u2019s purely negative \u2014 Slate is holding us back, the translation layer is expensive, we need to escape. But that misses something important: PTE has become a seriously good editor in its own right.",
+        marks: [],
+      },
+    ],
+  },
+  {
+    _type: "block",
+    _key: "p37c",
+    style: "normal",
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        _key: "p37c.0",
+        text: "Hundreds of test cases. Predictable typing behavior out of the box \u2014 the kind of consistency that a framework like Slate can never offer, because frameworks can\u2019t have opinions. A composable Behavior API that lets us define exactly how every user action should work. A collaborative editing pipeline that handles real-time multi-user editing with conflict resolution.",
+        marks: [],
+      },
+    ],
+  },
+  {
+    _type: "block",
+    _key: "p37d",
+    style: "normal",
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        _key: "p37d.0",
+        text: "Slate can\u2019t offer these things \u2014 not because it\u2019s poorly built, but because it\u2019s a framework. ",
+        marks: [],
+      },
+      {
+        _type: "span",
+        _key: "p37d.1",
+        text: "Frameworks stay general. Products get specific.",
+        marks: ["strong"],
+      },
+      {
+        _type: "span",
+        _key: "p37d.2",
+        text: " PTE got specific a long time ago, and it\u2019s better for it.",
+        marks: [],
+      },
+    ],
+  },
+  {
+    _type: "block",
+    _key: "p37e",
+    style: "normal",
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        _key: "p37e.0",
+        text: "This isn\u2019t just about removing a dependency. It\u2019s about recognizing that PTE has grown into something that deserves to stand on its own foundation.",
         marks: [],
       },
     ],
