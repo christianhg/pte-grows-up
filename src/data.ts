@@ -272,7 +272,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p07.8",
-        text: " and a PT-native mirror in ",
+        text: " and a Portable Text-native mirror in ",
         marks: [],
       },
       { _type: "span", _key: "p07.9", text: "editor.value", marks: ["code"] },
@@ -495,11 +495,9 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p12.2",
-        text: ". Not PTE logic, not Slate logic, but the ",
+        text: ". Not PTE logic, not Slate logic, but the boundary between them \u2014 misidentified nodes, null-handling mismatches, stale sync state. Five of the six would be structurally impossible without the dual model.",
         marks: [],
       },
-      { _type: "span", _key: "p12.3", text: "boundary", marks: ["em"] },
-      { _type: "span", _key: "p12.4", text: " between them:", marks: [] },
     ],
   },
 
@@ -512,71 +510,6 @@ export const PT: PTBlock[] = [
 
   {
     _type: "block",
-    _key: "b1",
-    style: "normal",
-    listItem: "bullet",
-    level: 1,
-    markDefs: [],
-    children: [
-      { _type: "span", _key: "b1.0", text: "A field named ", marks: [] },
-      { _type: "span", _key: "b1.1", text: "text", marks: ["code"] },
-      {
-        _type: "span",
-        _key: "b1.2",
-        text: " on a block object caused the dual-model sync to misidentify nodes and silently drop updates.",
-        marks: [],
-      },
-    ],
-  },
-  {
-    _type: "block",
-    _key: "b2",
-    style: "normal",
-    listItem: "bullet",
-    level: 1,
-    markDefs: [],
-    children: [
-      {
-        _type: "span",
-        _key: "b2.0",
-        text: "The patch translation emitted operations that treated ",
-        marks: [],
-      },
-      { _type: "span", _key: "b2.1", text: "null", marks: ["code"] },
-      {
-        _type: "span",
-        _key: "b2.2",
-        text: ' as "present," causing insert failures for users.',
-        marks: [],
-      },
-    ],
-  },
-  {
-    _type: "block",
-    _key: "b3",
-    style: "normal",
-    listItem: "bullet",
-    level: 1,
-    markDefs: [],
-    children: [
-      {
-        _type: "span",
-        _key: "b3.0",
-        text: "Duplicate ",
-        marks: [],
-      },
-      { _type: "span", _key: "b3.1", text: "_key", marks: ["code"] },
-      {
-        _type: "span",
-        _key: "b3.2",
-        text: " values caused the wrong child to appear selected.",
-        marks: [],
-      },
-    ],
-  },
-
-  {
-    _type: "block",
     _key: "dataloss",
     style: "normal",
     markDefs: [],
@@ -584,7 +517,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "dataloss.0",
-        text: "And the worst one: ",
+        text: "The worst one caused ",
         marks: [],
       },
       {
@@ -596,7 +529,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "dataloss.2",
-        text: " Two editors working on the same document. Editor A\u2019s deferred normalization patches \u2014 stale state from the dual-model sync \u2014 silently overwrote Editor B\u2019s live changes. Bold formatting, gone. No error, no warning. ",
+        text: " Two editors, same document. Editor A\u2019s deferred normalization patches \u2014 stale state from the dual-model sync \u2014 silently overwrote Editor B\u2019s live changes. Bold formatting, gone. No error, no warning. ",
         marks: [],
       },
       {
@@ -604,23 +537,6 @@ export const PT: PTBlock[] = [
         _key: "dataloss.3",
         text: "Users lost work because two internal models briefly disagreed about the truth, and the wrong one won.",
         marks: ["highlight"],
-      },
-    ],
-  },
-
-  {
-    _type: "block",
-    _key: "b5",
-    style: "normal",
-    listItem: "bullet",
-    level: 1,
-    markDefs: [],
-    children: [
-      {
-        _type: "span",
-        _key: "b5.0",
-        text: "Two separate sync machine failures when block types or children changed during external sync.",
-        marks: [],
       },
     ],
   },
@@ -633,19 +549,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p13.0",
-        text: "Five of those six bugs would be ",
-        marks: [],
-      },
-      {
-        _type: "span",
-        _key: "p13.1",
-        text: "structurally impossible",
-        marks: ["em"],
-      },
-      {
-        _type: "span",
-        _key: "p13.2",
-        text: " without the translation layer. They exist because we maintain two models and translate between them. That\u2019s roughly one translation-layer bug per week \u2014 an ongoing tax on every engineer who touches PTE.",
+        text: "That\u2019s about two translation-layer bugs per week. An ongoing tax on every engineer who touches PTE.",
         marks: [],
       },
     ],
@@ -1020,7 +924,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p29.0",
-        text: "Recent changes have been bug fixes and browser compatibility patches: removing the immer dependency, Shadow DOM fixes for Android, composition event handling. These are real improvements, and we\u2019d want to cherry-pick them. But there\u2019s no stream of innovations to miss. The features PTE needs (container support, a PT-native data model, multi-callback rendering) are things Slate will never provide. They\u2019re specific to Portable Text.",
+        text: "Recent changes have been bug fixes and browser compatibility patches: removing the immer dependency, Shadow DOM fixes for Android, composition event handling. These are real improvements, and we\u2019d want to cherry-pick them. But there\u2019s no stream of innovations to miss. The features PTE needs (container support, a Portable Text-native data model, multi-callback rendering) are things Slate will never provide. They\u2019re specific to Portable Text.",
         marks: [],
       },
     ],
