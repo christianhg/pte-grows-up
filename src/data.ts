@@ -196,7 +196,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p05.1",
-        text: "PTE\u2019s integration layer, the code that bridges between Portable Text and Slate, is 493KB of TypeScript across 136 files. Slate itself is 513KB of source code.",
+        text: "PTE\u2019s integration layer, the code that bridges between Portable Text and Slate, is 493KB of TypeScript. Slate itself is 513KB of source code.",
         marks: ["strong"],
       },
     ],
@@ -506,8 +506,8 @@ export const PT: PTBlock[] = [
   {
     _type: "factBox",
     _key: "fb3",
-    number: "6 bugs in 6 weeks",
-    label: "traced directly to the translation layer \u2014 ~1 per week, ongoing",
+    number: "6 bugs",
+    label: "traced directly to the translation layer in recent weeks \u2014 ~2 per week",
   },
 
   {
@@ -666,7 +666,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p14.2",
-        text: " handling, or somewhere in the interaction between all three. You have to hold three systems in your head at once. The translation layer creates a combinatorial bug surface: 8 operation types \u00d7 2 sync directions \u00d7 depth branching \u00d7 type handling = roughly 96 code paths. Our single largest test file is 50KB, and it exists solely to verify that the dual-model sync doesn\u2019t drift.",
+        text: " handling, or somewhere in the interaction between all three. You have to hold three systems in your head at once. Our single largest test file is 50KB, and it exists solely to verify that the dual-model sync doesn\u2019t drift.",
         marks: [],
       },
     ],
@@ -692,19 +692,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p15.2",
-        text: " from translation overhead alone. Structural operations like Enter or Delete hit 100\u2013250 calls as each Slate operation passes through all 8 plugin layers. The ",
-        marks: [],
-      },
-      {
-        _type: "span",
-        _key: "p15.3",
-        text: "buildIndexMaps",
-        marks: ["code"],
-      },
-      {
-        _type: "span",
-        _key: "p15.4",
-        text: " function runs on every structural operation with O(N) document-size scaling \u2014 it gets slower as documents grow.",
+        text: " from translation overhead alone. Structural operations like Enter or Delete hit 100\u2013250 calls as each Slate operation passes through all 8 plugin layers.",
         marks: [],
       },
     ],
@@ -1062,7 +1050,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "h2f.0",
-        text: "The plan: vendor first, then unify",
+        text: "The plan",
         marks: [],
       },
     ],
@@ -1130,7 +1118,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p32.0",
-        text: "Step 1: Vendor the source.",
+        text: "Step 1: Copy Slate in (~1 day).",
         marks: ["strong"],
       },
       { _type: "span", _key: "p32.1", text: " Copy ", marks: [] },
@@ -1142,21 +1130,34 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p32.7",
-        text: " into the PTE monorepo as internal packages. Remove the external npm dependencies. Strip the 78% of Slate\u2019s API surface we don\u2019t use. All existing tests pass, behavioral equivalence verified. This also fixes a real production headache: we don\u2019t control how Slate declares ",
+        text: " into the PTE monorepo as internal packages. Remove the external npm dependencies. All existing tests pass. We get debuggable source (breakpoints in the actual code, not node_modules) and fix a production headache where Slate\u2019s peer dependency on ",
         marks: [],
       },
       { _type: "span", _key: "p32.8", text: "slate-dom", marks: ["code"] },
       {
         _type: "span",
         _key: "p32.9",
-        text: " as a peer dependency, which means Canvas (which depends on PTE both directly and through Sanity) ends up pulling in ",
+        text: " causes Canvas to pull in duplicate copies.",
         marks: [],
       },
-      { _type: "span", _key: "p32.10", text: "slate-dom", marks: ["code"] },
+    ],
+  },
+  {
+    _type: "block",
+    _key: "p32b",
+    style: "normal",
+    markDefs: [],
+    children: [
       {
         _type: "span",
-        _key: "p32.11",
-        text: " multiple times. Duplicate copies, bundle bloat, subtle bugs. Vendoring eliminates this entire class of dependency-graph problems.",
+        _key: "p32b.0",
+        text: "Step 2: Strip the 78% we don\u2019t use (~2 days).",
+        marks: ["strong"],
+      },
+      {
+        _type: "span",
+        _key: "p32b.1",
+        text: " PTE uses about 25 of Slate\u2019s ~115 methods. Delete the rest. Post-strip: ~190-230KB vendored, down from ~513KB.",
         marks: [],
       },
     ],
@@ -1170,13 +1171,33 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p33.0",
-        text: "Step 2: Progressively unify.",
+        text: "Step 3: Make Portable Text the source of truth (~1-2 weeks).",
         marks: ["strong"],
       },
       {
         _type: "span",
         _key: "p33.1",
-        text: " With the code in-house, we can start collapsing the translation layer piece by piece. Eliminate the dual-model sync and make Slate\u2019s tree the PT tree directly. Merge the render pipeline so PTE\u2019s multi-callback dispatch is first-class instead of a layer on top. Unify normalization into a single pass. Merge the two Editable components (PTE\u2019s 27KB wrapper + Slate\u2019s 76KB = 103KB today; target ~45\u201350KB unified). Each change is a focused PR with clear before/after.",
+        text: " This is the real architectural move. Kill the dual-model sync so there\u2019s one data model instead of two. The converters disappear, we drop 76KB, and model-drift bugs can\u2019t happen anymore. This work isn\u2019t additional cost on top of containers \u2014 containers need the depth-2 code rewritten either way. You\u2019re either teaching the translation layer to handle arbitrary depth, or removing it. Same files, similar effort.",
+        marks: [],
+      },
+    ],
+  },
+  {
+    _type: "block",
+    _key: "p33b",
+    style: "normal",
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        _key: "p33b.0",
+        text: "Step 4: Simplify as you go (ongoing).",
+        marks: ["strong"],
+      },
+      {
+        _type: "span",
+        _key: "p33b.1",
+        text: " Merge the two Editable components (PTE\u2019s 27KB wrapper + Slate\u2019s 76KB = 103KB today; target ~45-50KB unified). Unify normalization into a single pass. Collapse the render pipeline. No deadline on any of this \u2014 just a rule: when you hit a seam between PTE and Slate, collapse it instead of wrapping around it.",
         marks: [],
       },
     ],
@@ -1190,19 +1211,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p34.0",
-        text: "Step 1 is low-risk and immediately beneficial. We stop depending on an external package with no dedicated maintainer, and we can start stripping dead code. Step 2 is where the real gains compound: fewer bugs, an estimated ",
-        marks: [],
-      },
-      {
-        _type: "span",
-        _key: "p34.1",
-        text: "60\u201370% reduction in per-keystroke overhead",
-        marks: ["strong"],
-      },
-      {
-        _type: "span",
-        _key: "p34.2",
-        text: " by eliminating boundary crossings and translation, simpler debugging, and a clear path to containers.",
+        text: "Steps 1 and 2 take about 3 days and deliver immediate value. Step 3 is where the real gains compound: fewer bugs, the 40-50 extra function calls per keystroke from translation go away entirely, simpler debugging, and a clear path to containers. Step 4 happens naturally as you touch the code.",
         marks: [],
       },
     ],
@@ -1279,7 +1288,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p37.0",
-        text: "What we\u2019re removing is the translation layer between Slate and PTE. The dual-model sync. The patch conversion. The render dispatch indirection. The double normalization pass. The 96 code paths that exist only because two systems need to agree on what the document looks like.",
+        text: "What we\u2019re removing is the translation layer between Slate and PTE. The dual-model sync. The patch conversion. The render dispatch indirection. The double normalization pass. The code paths that exist only because two systems need to agree on what the document looks like.",
         marks: [],
       },
     ],
@@ -1393,7 +1402,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p38.0",
-        text: "PTE has already built a parallel editor runtime. We maintain 493KB of integration code to bridge between our system and a 513KB framework we\u2019ve mostly outgrown. That bridge costs us about one bug per week, 40\u201350 extra function calls per keystroke, and 106KB of tests that exist just to verify the translation doesn\u2019t drift.",
+        text: "PTE has already built a parallel editor runtime. We maintain 493KB of integration code to bridge between our system and a 513KB framework we\u2019ve mostly outgrown. That bridge costs us about two bugs per week, 40\u201350 extra function calls per keystroke, and 106KB of tests that exist just to verify the translation doesn\u2019t drift.",
         marks: [],
       },
     ],
