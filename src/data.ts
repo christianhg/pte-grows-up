@@ -169,8 +169,8 @@ export const PT: PTBlock[] = [
   {
     _type: "factBox",
     _key: "fb1",
-    number: "493KB \u2192 513KB",
-    label: "PTE\u2019s integration layer is nearly the size of Slate itself",
+    number: "\u2248 1 : 1",
+    label: "The integration layer is nearly as large as the framework itself",
   },
 
   {
@@ -367,8 +367,8 @@ export const PT: PTBlock[] = [
   {
     _type: "factBox",
     _key: "fb3",
-    number: "76KB",
-    label: "of code dedicated solely to keeping two models of the same document in sync",
+    number: "Thousands of lines",
+    label: "of dedicated sync code just to keep two models from drifting",
   },
 
   {
