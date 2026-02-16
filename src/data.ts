@@ -367,8 +367,8 @@ export const PT: PTBlock[] = [
   {
     _type: "factBox",
     _key: "fb3",
-    number: "Thousands of lines",
-    label: "of dedicated sync code just to keep two models from drifting",
+    number: "76KB",
+    label: "of dedicated sync code",
   },
 
   {
