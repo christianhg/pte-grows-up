@@ -380,7 +380,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p11.0",
-        text: "Even with all that testing, bugs keep tracing back to this layer. Most of them wouldn\u2019t exist without the dual model.",
+        text: "Even with all that testing, bugs keep tracing back to this layer. Nearly all of them wouldn\u2019t exist without the dual model.",
         marks: [],
       },
     ],
@@ -414,7 +414,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p13.0",
-        text: "PTE has outgrown the architecture. The integration layer was the right approach when PTE was a thin wrapper around Slate. It\u2019s the wrong approach now that PTE is a full editor maintaining a compatibility bridge to a framework it\u2019s already outgrown.",
+        text: "PTE has moved past the architecture. The integration layer was the right approach when PTE was a thin wrapper around Slate. It\u2019s the wrong approach now that PTE is a full editor maintaining a compatibility bridge to a framework it\u2019s already outgrown.",
         marks: [],
       },
     ],
@@ -560,7 +560,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p19.0",
-        text: "We\u2019re taking the second path.",
+        text: "That\u2019s the path we\u2019re taking.",
         marks: [],
       },
     ],
@@ -744,7 +744,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p28.0",
-        text: "We didn\u2019t outgrow Slate by accident. We outgrew it by building something good.",
+        text: "We didn\u2019t get here by accident. We outgrew it by building something good.",
         marks: [],
       },
     ],
@@ -798,7 +798,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p31.0",
-        text: "Slate\u2019s development has slowed, and the features PTE needs (containers, a Portable Text-native data model, multi-callback rendering) are things a general-purpose framework won\u2019t provide. We\u2019ve been maintaining our own editor for a while now. We just haven\u2019t made it official.",
+        text: "The features PTE needs next (containers, a Portable Text-native data model, multi-callback rendering) are things a general-purpose framework won\u2019t provide. We\u2019ve been maintaining our own editor for a while now. We just haven\u2019t made it official.",
         marks: [],
       },
     ],
