@@ -152,13 +152,6 @@ export const PT: PTBlock[] = [
   },
 
   {
-    _type: "factBox",
-    _key: "fb2",
-    number: "22%",
-    label: "of Slate\u2019s API surface is actually used by PTE \u2014 78% is dead weight",
-  },
-
-  {
     _type: "block",
     _key: "p05",
     style: "normal",
@@ -201,6 +194,13 @@ export const PT: PTBlock[] = [
         marks: [],
       },
     ],
+  },
+
+  {
+    _type: "factBox",
+    _key: "fb2",
+    number: "22%",
+    label: "of Slate\u2019s API surface is actually used by PTE \u2014 78% is dead weight",
   },
 
   // === Two models, one document ===
@@ -405,7 +405,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p15.0",
-        text: "Debugging collapses from three systems to PTE, React, and the DOM. Containers stop being blocked by architecture. And the class of bugs that caused data loss in collaborative editing can\u2019t happen anymore. One model. Nothing to drift.",
+        text: "Containers stop being blocked by architecture. And the class of bugs that caused data loss in collaborative editing can\u2019t happen anymore. One model. Nothing to drift.",
         marks: [],
       },
     ],
