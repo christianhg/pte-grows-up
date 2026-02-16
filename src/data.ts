@@ -212,7 +212,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p06.0",
-        text: "The collaborative editing pipeline handles real-time multi-user editing with conflict resolution. That\u2019s the hardest problem in text editing, and PTE handles it.",
+        text: "PTE understands Portable Text deeply. It knows the difference between annotations and decorators, what should happen when you type at the end of a link, how inline objects behave at selection boundaries. That understanding is encoded in over a thousand test cases, written in Gherkin syntax using racejar, our own testing library. They cover how backspace should behave at the start of a block, how selection should expand across inline elements, how paste should handle mixed content.",
         marks: [],
       },
     ],
@@ -226,7 +226,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p07.0",
-        text: "The Behavior API gives us composable control over every user action. Over a thousand test cases, written in Gherkin syntax using racejar, our own testing library, encode our opinions about how backspace should behave at the start of a block, how selection should expand across inline elements, how paste should handle mixed content. PTE has become a seriously good editor in its own right.",
+        text: "The Behavior API gives us composable control over every user action. The collaborative editing pipeline handles real-time multi-user editing with conflict resolution. PTE has become a seriously good editor in its own right.",
         marks: [],
       },
     ],
