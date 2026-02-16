@@ -212,7 +212,57 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p06.0",
-        text: "PTE understands Portable Text deeply. It knows the difference between annotations and decorators, what should happen when you type at the end of a link, how inline objects behave at selection boundaries. That understanding is encoded in over a thousand test cases, written in Gherkin syntax using racejar, our own testing library. They cover how backspace should behave at the start of a block, how selection should expand across inline elements, how paste should handle mixed content.",
+        text: "PTE understands Portable Text deeply. It knows the difference between annotations and decorators, what should happen when you type at the end of a link, how inline objects behave at selection boundaries. The schema drives everything: decorators only work if defined, paste filters to allowed types, structure validation happens on every operation.",
+        marks: [],
+      },
+    ],
+  },
+  {
+    _type: "block",
+    _key: "p06b",
+    style: "normal",
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        _key: "p06b.0",
+        text: "On top of that foundation: markdown shortcuts that let you type ",
+        marks: [],
+      },
+      {
+        _type: "span",
+        _key: "p06b.1",
+        text: "# ",
+        marks: ["code"],
+      },
+      {
+        _type: "span",
+        _key: "p06b.2",
+        text: " for a heading or ",
+        marks: [],
+      },
+      {
+        _type: "span",
+        _key: "p06b.3",
+        text: "**text**",
+        marks: ["code"],
+      },
+      {
+        _type: "span",
+        _key: "p06b.4",
+        text: " for bold without leaving rich text mode. A typography plugin with 22 auto-replacement rules for smart quotes, arrows, and fractions. An emoji picker triggered by ",
+        marks: [],
+      },
+      {
+        _type: "span",
+        _key: "p06b.5",
+        text: ":",
+        marks: ["code"],
+      },
+      {
+        _type: "span",
+        _key: "p06b.6",
+        text: " that autocompletes as you type. Paste a URL with text selected and it wraps the selection in a link. Five bidirectional format converters handle Portable Text, HTML, Markdown, plain text, and JSON.",
         marks: [],
       },
     ],
@@ -226,7 +276,7 @@ export const PT: PTBlock[] = [
       {
         _type: "span",
         _key: "p07.0",
-        text: "The Behavior API gives us composable control over every user action. The collaborative editing pipeline handles real-time multi-user editing with conflict resolution. PTE has become a seriously good editor in its own right.",
+        text: "The Behavior API gives us composable control over every user action. The collaborative editing pipeline handles real-time multi-user synchronization. Over a thousand test cases, written in Gherkin syntax using racejar, encode our opinions about how every edge case should resolve.",
         marks: [],
       },
     ],
